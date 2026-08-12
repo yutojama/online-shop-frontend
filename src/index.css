@@ -1,0 +1,39 @@
+@media (max-width: 576px) {
+  .navbar-collapse .dropdown-toggle::after {
+    display: none;
+  }
+
+  .navbar-collapse .dropdown-menu {
+    display: none !important;
+  }
+
+  /* .navbar-collapse .dropdown-toggle {
+    pointer-events: none;
+  } */
+
+  /* Reduce spacing between collapsed menu items */
+  .navbar-collapse .navbar-nav {
+    gap: 0 !important;
+  }
+
+  .navbar-collapse .nav-link {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+}
+
+/* card hovering */
+.card-hover {
+  transition: box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* prod images */
+.product-image {
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+}
