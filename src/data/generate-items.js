@@ -12,18 +12,20 @@ function generateItems(products) {
     products.forEach((product)=>{
         
         const sizeAmount = [0,0,0,0];
-        for(let i=0;i<product.amountRemain;i++){
+        for(let i=0;i<product.quantity;i++){
             const randomSize = Math.floor(Math.random() * sizes.length);
             sizeAmount[randomSize]++;
         }
 
         for(let i=0;i<sizeAmount.length;i++){
-            items.push({
-                id: id++,
-                product_id: product.id,
-                amountRemain: sizeAmount[i],
-                size: sizes[i]
-            })
+            if(sizeAmount[i]>0){
+                items.push({
+                    //id: id++,
+                    productId: product.id-1,
+                    quantity: sizeAmount[i],
+                    size: sizes[i]
+                })
+            }
         }
 
     });
