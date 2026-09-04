@@ -1,4 +1,4 @@
-
+import backendUrl from "../api/backend-info";
 
 function ProductCard({ product }) {
   return (
@@ -12,7 +12,7 @@ function ProductCard({ product }) {
 
         {/* card image */}
         <img
-            src={product.image}
+            src={backendUrl+'/api/images/'+product.image}  
             className="card-img-top rounded-0 product-image"
             alt={product.name}
         />
@@ -39,8 +39,8 @@ function ProductCard({ product }) {
                 </p>}
             
             {/* show discount while present */}
-            {product.discountPrice==0 ? (
-                    <p className="text-primary fw-bold">${product.origPrice}</p>
+            {product.discountPrice==null ? (
+                    <p className="text-black fw-medium">${product.origPrice}</p>
                 ):(
                     <>
                         <p className="text-decoration-line-through mb-0 small text-secondary">${product.origPrice}</p>

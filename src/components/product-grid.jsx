@@ -1,10 +1,19 @@
 import ProductCard from "./product-card";
-import products from "../data/products.json" with {type: "json"};
-import { useState } from "react";
+import webClient from "../api/web-client";
+
+import { useEffect, useState } from "react";
 
 function ProductGrid({prod_filter}) {
 
   prod_filter;
+
+  const [products, setProdutcts] = useState([]);
+  useEffect(()=>{
+    webClient.get("/guest/products/get-prods")
+    .then(response=>{
+      setProdutcts(response.data)
+    })
+  },[]);
 
   const [currentPage, setCurrentPage] = useState(1);
 
