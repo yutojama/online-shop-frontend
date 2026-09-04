@@ -44,7 +44,7 @@ function Navbar(){
 
                     <li className="nav-item">
                         <a className="nav-link active" href="#">
-                        Sign in
+                        Login
                         </a>
                     </li>
 

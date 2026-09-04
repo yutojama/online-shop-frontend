@@ -12,7 +12,7 @@ function ProductCard({ product }) {
 
         {/* card image */}
         <img
-            src={backendUrl+'/api/images/'+product.image}  
+            src={backendUrl+'/public/images/'+product.image}  
             className="card-img-top rounded-0 product-image"
             alt={product.name}
         />

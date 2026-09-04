@@ -1,15 +1,16 @@
 import ProductCard from "./product-card";
 import webClient from "../api/web-client";
+import { Link } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 
-function ProductGrid({prod_filter}) {
+function ProductGrid() {
 
-  prod_filter;
 
+  // get products from backend
   const [products, setProdutcts] = useState([]);
   useEffect(()=>{
-    webClient.get("/guest/products/get-prods")
+    webClient.get("/public/products/get-prods")
     .then(response=>{
       setProdutcts(response.data)
     })
@@ -54,7 +55,12 @@ function ProductGrid({prod_filter}) {
               className="col-12 col-sm-6 col-md-4 col-lg-3"
               key={product.id}
             >
-              <ProductCard product={product} />
+              <Link
+                to={'/products/'+product.id}
+                className="text-decoration-none"
+              >
+                <ProductCard product={product} />
+              </Link>
             </div>
 
           ))}
