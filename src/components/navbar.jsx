@@ -1,4 +1,7 @@
-function Navbar(){
+import { Link } from "react-router-dom"
+import { Dropdown } from "react-bootstrap"
+
+export default function Navbar({user}){
     return(
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
             <div className="container-fluid px-4 flex-nowrap text-nowrap">
@@ -43,9 +46,19 @@ function Navbar(){
                     <ul className="navbar-nav ms-auto align-items-center">
 
                     <li className="nav-item">
-                        <a className="nav-link active" href="#">
-                        Login
-                        </a>
+                        {user?(
+                            <UserMenu user={user}/>
+                                
+                        ):(
+                            <a 
+                            className="nav-link active" 
+                            href="#"
+                            data-bs-toggle="modal"
+                            data-bs-target="#loginModal"
+                            >
+                                Login
+                            </a>
+                        )}
                     </li>
 
                     <li className="nav-item">
@@ -72,4 +85,33 @@ function Navbar(){
     )
 }
 
-export default Navbar
+function UserMenu({user}){
+    return (
+        <Dropdown align="end">
+            <Dropdown.Toggle
+                variant="link"
+                className="nav-link"
+                id="user-dropdown"
+            >
+                Hello, {user.firstName}
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu className="rounded-0">
+                <Dropdown.Item
+                    as={Link}
+                    to="/profile"
+                >
+                    Profile
+                </Dropdown.Item>
+
+                <Dropdown.Item
+                    as="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#logoutModal"
+                >
+                    Logout
+                </Dropdown.Item>
+            </Dropdown.Menu>
+        </Dropdown>
+    )
+}
