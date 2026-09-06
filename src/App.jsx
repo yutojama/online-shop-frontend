@@ -6,6 +6,8 @@ import StoreLayout from './layouts/store-layout'
 import ProductDetail from './components/product-detail'
 import LoginModal from './components/login-modal'
 import LogoutModal from './components/logout-modal'
+import ContinueModal from './components/continue-modal'
+import Cart from './components/shopping-cart'
 import webClient from './api/web-client'
 
 export default function App() {
@@ -19,12 +21,14 @@ export default function App() {
         <Route path='/' element={<StoreLayout user={user} />}>
           <Route index element={<ProductGrid/>} />
           <Route path='/all' element={<ProductGrid/>} />
-          <Route path='/products/:id' element={<ProductDetail/>} />
+          <Route path='/products/:id' element={<ProductDetail user={user}/>} />
+          <Route path='/cart' element={<Cart user={user}/>} />
         </Route>
       </Routes>
 
       <LoginModal setUser={setUser}/>
       <LogoutModal setUser={setUser}/>
+      <ContinueModal user={user}/>
     </>
   )
 

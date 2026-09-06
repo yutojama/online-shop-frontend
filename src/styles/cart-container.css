@@ -1,0 +1,19 @@
+.cart-image-container {
+  height: 110px;
+  width: 110px;
+  position: relative;
+  display: inline-block;
+}
+
+.cart-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.square-select {
+    width: 80px !important;
+    height: 40px !important;
+    border-radius: 0 !important;
+}

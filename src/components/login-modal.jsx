@@ -28,6 +28,12 @@ export default function LoginModal({setUser}) {
         } catch(error) {
             console.error("Login failed", error);
         }
+
+        try{
+            await webClient.post("/api/carts/create");
+        } catch(error) {
+            console.log("Cart already exists");
+        }
     }
 
     return (

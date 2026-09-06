@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import { Dropdown } from "react-bootstrap"
 
 export default function Navbar({user}){
     return(
@@ -8,9 +7,9 @@ export default function Navbar({user}){
 
                 {/* Logo / Brand */}
                 <div className="d-flex align-items-center">
-                    <a className="navbar-brand" href="#">
+                    <Link className="navbar-brand" to="/">
                         DemoShop
-                    </a>
+                    </Link>
                 </div>
 
                 {/* Search bar*/}
@@ -68,13 +67,7 @@ export default function Navbar({user}){
                     </li>
 
                     <li className="nav-item">
-                        <a className="nav-link d-flex align-items-center" href="#">
-                        <i className="bi bi-cart fs-4 me-2"></i>
-                        <span  className="lh-1">
-                            Shopping<br/>
-                            Basket
-                        </span>
-                        </a>
+                        <CartButton user={user}/>
                     </li>
 
                     </ul>
@@ -87,31 +80,69 @@ export default function Navbar({user}){
 
 function UserMenu({user}){
     return (
-        <Dropdown align="end">
-            <Dropdown.Toggle
-                variant="link"
-                className="nav-link"
-                id="user-dropdown"
+
+        <div className="dropdown">
+            <button
+                className="nav-link dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
             >
                 Hello, {user.firstName}
-            </Dropdown.Toggle>
+            </button>
 
-            <Dropdown.Menu className="rounded-0">
-                <Dropdown.Item
-                    as={Link}
-                    to="/profile"
-                >
-                    Profile
-                </Dropdown.Item>
+            <ul className="dropdown-menu dropdown-menu-end rounded-0">
+                <li>
+                    <Link
+                        className="dropdown-item"
+                        to="/profile"
+                    >
+                        Profile
+                    </Link>
+                </li>
 
-                <Dropdown.Item
-                    as="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#logoutModal"
-                >
-                    Logout
-                </Dropdown.Item>
-            </Dropdown.Menu>
-        </Dropdown>
+                <li>
+                    <button
+                        className="dropdown-item"
+                        type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#logoutModal"
+                    >
+                        Logout
+                    </button>
+                </li>
+            </ul>
+        </div>
     )
+}
+
+function CartButton({user}) {
+    return(
+        user?(
+            <Link 
+                className="nav-link d-flex align-items-center" 
+                to={user?"/cart":"/"}
+            >
+            <i className="bi bi-cart fs-4 me-2"></i>
+            <span  className="lh-1">
+                Shopping<br/>
+                Cart
+            </span>
+            </Link>
+        ):(
+            <button
+                type="button"
+                className="nav-link d-flex align-items-center"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
+            >
+                <i className="bi bi-cart fs-4 me-2"></i>
+                <span className="lh-1">
+                    Shopping<br />
+                    Cart
+                </span>
+            </button>
+        )
+    )
+
 }

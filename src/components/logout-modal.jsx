@@ -31,7 +31,7 @@ export default function LogoutModal({setUser}) {
 
                         <button
                             type="button"
-                            className="btn-close"
+                            className="btn-close rounded-0"
                             data-bs-dismiss="modal"
                             aria-label="Close"
                         />
@@ -44,7 +44,7 @@ export default function LogoutModal({setUser}) {
                     <div className="modal-footer">
                         <button
                             type="button"
-                            className="btn btn-secondary"
+                            className="btn btn-secondary rounded-0"
                             data-bs-dismiss="modal"
                         >
                             No
@@ -52,7 +52,7 @@ export default function LogoutModal({setUser}) {
 
                         <button
                             type="button"
-                            className="btn btn-primary"
+                            className="btn btn-primary rounded-0"
                             data-bs-dismiss="modal"
                             onClick={handleLogout}
                         >
