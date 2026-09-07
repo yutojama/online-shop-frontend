@@ -4,6 +4,7 @@ import './App.css'
 import ProductGrid from './components/product-grid'
 import StoreLayout from './layouts/store-layout'
 import ProductDetail from './components/product-detail'
+import PlaceOrder from './components/place-order'
 import LoginModal from './components/login-modal'
 import LogoutModal from './components/logout-modal'
 import ContinueModal from './components/continue-modal'
@@ -23,6 +24,7 @@ export default function App() {
           <Route path='/all' element={<ProductGrid/>} />
           <Route path='/products/:id' element={<ProductDetail user={user}/>} />
           <Route path='/cart' element={<Cart user={user}/>} />
+          <Route path='/place-order' element={<PlaceOrder user={user}/>} />
         </Route>
       </Routes>
 

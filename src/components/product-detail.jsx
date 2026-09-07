@@ -30,7 +30,7 @@ export default function ProductDetail({user}) {
     
     // display loading when product is not yet loaded
     if (!product) {
-        return <div>Loading...</div>;
+        return <p>Loading...</p>;
     }
 
     // get available sizes from product items

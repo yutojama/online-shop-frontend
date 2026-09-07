@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import webClient from "../api/web-client";
 import backendUrl from "../api/backend-info";
 import "../styles/cart-container.css"
@@ -326,9 +327,10 @@ function CartItem({cartItem,cartItemList,inventoryItemList,setRefresh,setCart}) 
 }
 
 function ShippingCost({cartSum}){
+    const navi = useNavigate();
     return(
         <div className="container my-5">
-            <div className="card border-0 shadow-sm">
+            <div className="card border-0 shadow-sm rounded-0">
                 <div className="card-body">
 
                     {/* <!-- Shipping info --> */}
@@ -372,11 +374,28 @@ function ShippingCost({cartSum}){
                             <small className="text-muted">VAT included</small>
                         </div>
 
-                        <strong className="fs-4">{`$${cartSum.total-cartSum.shippingCost}`}</strong>
+                        <div>
+                            <strong className="fs-2">{`$${cartSum.total-cartSum.shippingCost}`}</strong>
+                            
+                        </div>
                     </div>
-
+                    
                 </div>
             </div>
+
+            {/* continue with order button */}
+            <div className="d-flex justify-content-end mt-3">
+                <button
+                    className="btn btn-danger rounded-0 py-3 px-4 ms-3"
+                    type="button"
+                    onClick={()=>{
+                        navi("/place-order");
+                    }}
+                >
+                    PROCEED WITH THE ORDER {">"}
+                </button>
+            </div>
+            
         </div>
     )
 }
