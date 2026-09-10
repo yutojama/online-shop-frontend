@@ -1,0 +1,49 @@
+.address-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  margin-bottom: 4px;
+}
+
+.address-row strong {
+  text-align: left;
+}
+
+
+.ship-address-carousel {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  padding: 10px;
+}
+
+.ship-address-card {
+  flex: 0 0 320px;
+  width: 320px;
+
+  padding: 25px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+  scroll-snap-align: center;
+
+  cursor: pointer;
+  background: white;
+}
+
+.ship-address-card.selected {
+  border: 2px solid #0d6efd;
+}
+
+.ship-address-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  margin-bottom: 5px;
+}

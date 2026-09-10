@@ -61,9 +61,20 @@ export default function Navbar({user}){
                     </li>
 
                     <li className="nav-item">
-                        <a className="nav-link" href="#">
-                        Orders
-                        </a>
+                        {user?(
+                            <Link className="nav-link" to={"/order"}>
+                                Orders
+                            </Link> 
+                        ):(
+                            <a 
+                            className="nav-link active" 
+                            href="#"
+                            data-bs-toggle="modal"
+                            data-bs-target="#loginModal"
+                            >
+                                Orders
+                            </a>
+                        )}
                     </li>
 
                     <li className="nav-item">
@@ -117,18 +128,32 @@ function UserMenu({user}){
 }
 
 function CartButton({user}) {
+    console.log(user);
     return(
         user?(
-            <Link 
-                className="nav-link d-flex align-items-center" 
-                to={user?"/cart":"/"}
-            >
-            <i className="bi bi-cart fs-4 me-2"></i>
-            <span  className="lh-1">
-                Shopping<br/>
-                Cart
-            </span>
-            </Link>
+            user.role==="CUSTOMER"?(
+                <Link 
+                    className="nav-link d-flex align-items-center" 
+                    to={user?"/cart":"/"}
+                >
+                <i className="bi bi-cart fs-4 me-2"></i>
+                <span  className="lh-1">
+                    Shopping<br/>
+                    Cart
+                </span>
+                </Link>
+            ):(
+                <Link 
+                    className="nav-link d-flex align-items-center" 
+                    to={user?"/shop/product-list":"/"}
+                >
+                <i className="bi bi-file-earmark-text fs-4 me-2"></i>
+                <span  className="lh-1">
+                    Product<br/>
+                    List
+                </span>
+                </Link>
+            )
         ):(
             <button
                 type="button"
