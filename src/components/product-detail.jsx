@@ -34,7 +34,7 @@ export default function ProductDetail({user}) {
     }
 
     // get available sizes from product items
-    const availableSizes = items.map(item => item.size);
+    const availableSizes = items.filter(item => item.quantity>0).map(item => item.size);
 
     // find stock number of selected size
     let stockItem = items.find(item => item.size === selectSize);
@@ -46,6 +46,7 @@ export default function ProductDetail({user}) {
         return "text-success"
     }
 
+    // console.log(product);
     return (
         <div className="container py-3">
             <div className="d-flex flex-row gap-5">
@@ -57,9 +58,9 @@ export default function ProductDetail({user}) {
                     />
 
                     {/** tags above image */}
-                    <span className="product-action-label">
+                    {product.discountPrice&&<span className="product-action-label">
                         ACTION PRICE
-                    </span>
+                    </span>}
                     <span className="product-gender-label">
                         {product.gender==="M"&&<i className="bi bi-gender-male fs-3"></i>}
                         {product.gender==="W"&&<i className="bi bi-gender-female fs-3"></i>}

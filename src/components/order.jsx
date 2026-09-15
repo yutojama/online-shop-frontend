@@ -24,7 +24,7 @@ export default function OrderPage({user}) {
         return () => clearInterval(interval);
     }, []);
 
-
+ 
     if(orders.length===0){
         return(
             <h1 className="mt-4">You have no order</h1>
@@ -36,10 +36,10 @@ export default function OrderPage({user}) {
     return(
         
         <div>
-            {orders.map(order=>
+            {orders.map((order,index)=>
 
                 // Order card
-                <div className="card shadow-sm rounded-0 mb-4">
+                <div key={index} className="card shadow-sm rounded-0 mb-4">
 
                     <div className="card-body p-4">
                         <h5 className="fw-semibold mb-3 text-secondary">
@@ -53,14 +53,14 @@ export default function OrderPage({user}) {
                             <div className="col-lg-2">SHIPPING STATUS</div>
                         </div>
                         {
-                            order.orderShipmentDTOList.map(shipment=>
+                            order.orderShipmentDTOList.map((shipment,index)=>
 
                                 // Shipment charts
-                                <div className="row border-bottom align-items-center py-3">
+                                <div key={index} className="row border-bottom align-items-center py-3">
                                     <div className="col-lg-3 d-flex align-items-center">
                                         {
                                             shipment.orderItemDTOList.map((item,index)=>
-                                                index<4&&<div
+                                                index<4&&<div key={index}
                                                     className="d-flex align-items-center justify-content-center ms-2"
                                                     style={{ width: "45px", minWidth: "45px" }}
                                                 >
@@ -76,7 +76,7 @@ export default function OrderPage({user}) {
                                     </div>
 
                                     <div className="col-lg-2 fw-medium text-secondary">
-                                        <p className="mb-0">{shipment.shopKeycloakId.slice(0,18).toUpperCase()}</p>
+                                        <p className="mb-0">{shipment.shopId.slice(0,18).toUpperCase()}</p>
                                     </div>
                                     <div className="col-lg-2 fw-medium text-secondary">
                                         {shipment.trackingNumber?

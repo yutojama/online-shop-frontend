@@ -79,7 +79,7 @@ export default function Cart({user}){
                 
                 {/** Products */}
                 {cartItemList.map((cartItem, index)=>{
-                    return <CartItem cartItem={cartItem} cartItemList={cartItemList} inventoryItemList={inventoryList[index]} setRefresh={setRefresh} setCart={setCart}/>
+                    return <CartItem  key={cartItem.id} cartItem={cartItem} cartItemList={cartItemList} inventoryItemList={inventoryList[index]} setRefresh={setRefresh} setCart={setCart}/>
                 })}
                 
                 {/** Shipping cost banner */}
@@ -180,7 +180,7 @@ function CartItem({cartItem,cartItemList,inventoryItemList,setRefresh,setCart}) 
                 >
                     {inventoryItemList.map(inv=>{
                         return(
-                            <option value={inv.size}>
+                            <option value={inv.size} key={inv.size}>
                                 {inv.size}
                             </option>
                         )

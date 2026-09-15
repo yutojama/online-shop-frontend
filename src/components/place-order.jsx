@@ -51,7 +51,7 @@ export default function PlaceOrder({user, setOrder}) {
 
     const cartSum = cart.cartSumResponseDTO;
     const itemList = cartSum.itemList;
-    // console.log(checked);
+    // console.log(itemList);
 
     return(
 
@@ -253,9 +253,9 @@ export default function PlaceOrder({user, setOrder}) {
                             </h5>
 
                             {
-                                itemList.map(item => {
+                                itemList.map((item,index) => {
                                     return(
-                                        <div className="d-flex align-items-start pb-3 border-bottom mb-1">
+                                        <div key={index} className="d-flex align-items-start pb-3 border-bottom mb-1">
 
                                             {/* Product image */}
                                             <div
@@ -405,7 +405,7 @@ export default function PlaceOrder({user, setOrder}) {
 
 
             {/* back and continue buttons */}
-            <div class="d-flex justify-content-between align-items-center mt-4 mb-5">
+            <div className="d-flex justify-content-between align-items-center mt-4 mb-5">
                 <button
                     className="btn btn-outline-secondary rounded-0 py-3 px-4 ms-3"
                     type="button"

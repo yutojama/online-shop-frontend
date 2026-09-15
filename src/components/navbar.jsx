@@ -128,7 +128,7 @@ function UserMenu({user}){
 }
 
 function CartButton({user}) {
-    console.log(user);
+    // console.log(user);
     return(
         user?(
             user.role==="CUSTOMER"?(
