@@ -23,6 +23,9 @@ export default function LoginModal({setUser}) {
                 const modal = Modal.getInstance(modalElement);
                 modal?.hide();
                 setUser(userResponse.data);
+
+                // save user in localStorage
+                localStorage.setItem("user",JSON.stringify(userResponse.data));
             }
             
         } catch(error) {

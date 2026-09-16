@@ -157,7 +157,15 @@ export default function ProductDetail({user}) {
 function InShopCartButton({user,product,stockItem,setSelectSize}){
     return(
         user?(
-            stockItem===undefined?(
+            user.role=="SHOP"?(
+                <button
+                    className="btn btn-secondary rounded-0 py-3 px-5"
+                    type="button"
+                >
+                    IN SHOPPING CART
+                </button>
+            ):(
+                stockItem===undefined?(
                 <button
                     className="btn btn-danger rounded-0 py-3 px-5"
                     type="button"
@@ -193,7 +201,7 @@ function InShopCartButton({user,product,stockItem,setSelectSize}){
                     }
                 >
                     IN SHOPPING CART
-                </button>
+                </button>)
             )
         ):(
             <button 

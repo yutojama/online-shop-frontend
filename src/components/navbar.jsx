@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 
 export default function Navbar({user}){
+    // console.log(user);
     return(
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
             <div className="container-fluid px-4 flex-nowrap text-nowrap">
@@ -62,9 +63,15 @@ export default function Navbar({user}){
 
                     <li className="nav-item">
                         {user?(
-                            <Link className="nav-link" to={"/order"}>
-                                Orders
-                            </Link> 
+                            user.role==="SHOP"?(
+                                <Link className="nav-link" to={"/shop-order"}>
+                                    Orders
+                                </Link>
+                            ):(
+                                <Link className="nav-link" to={"/order"}>
+                                    Orders
+                                </Link>
+                            )
                         ):(
                             <a 
                             className="nav-link active" 

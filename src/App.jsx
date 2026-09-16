@@ -6,6 +6,7 @@ import StoreLayout from './layouts/store-layout'
 import ProductDetail from './components/product-detail'
 import PlaceOrder from './components/place-order'
 import OrderPage from './components/order'
+import ShopOrder from './components/shop-order'
 import LoginModal from './components/login-modal'
 import LogoutModal from './components/logout-modal'
 import ContinueModal from './components/continue-modal'
@@ -17,7 +18,14 @@ import webClient from './api/web-client'
 
 export default function App() {
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(()=>{
+    // localStorage.clear();
+    const storedUser = localStorage.getItem("user");
+
+    if(storedUser){return JSON.parse(storedUser)};
+
+    return null;
+  });
   const [order, setOrder] = useState(null);
   
   return(
@@ -31,6 +39,7 @@ export default function App() {
           <Route path='/cart' element={<Cart user={user}/>} />
           <Route path='/place-order' element={<PlaceOrder user={user} setOrder={setOrder}/>} />
           <Route path='/order' element={<OrderPage user={user}/>} />
+          <Route path='/shop-order' element={<ShopOrder user={user}/>} />
 
           <Route path='/shop/product-list' element={<ProductList user={user}/>} />
           <Route path='/shop/products/:id' element={<ProductShopDetail user={user}/>} />

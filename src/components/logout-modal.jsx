@@ -1,7 +1,10 @@
 import webClient from "../api/web-client"
 import { Modal } from "bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export default function LogoutModal({setUser}) {
+
+    const navi = useNavigate();
 
     const handleLogout = async ()=>{
         await webClient.post("/api/auth/logout");
@@ -9,6 +12,8 @@ export default function LogoutModal({setUser}) {
         const modal = Modal.getInstance(modalElement);
         modal?.hide();
         setUser(undefined);
+        localStorage.removeItem("user");
+        navi("/");
     }
 
     return(
