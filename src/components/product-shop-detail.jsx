@@ -14,6 +14,7 @@ export default function ProductShopDetail({user}) {
     const [product, setProduct] = useState(null);
     const [items, setItems] = useState([]);
     const [selectSize, setSelectSize] = useState(null);
+    const [refresh, setRefresh] = useState(null);
 
     useEffect(()=>{
         webClient.get("/public/products/get-prod/"+id)
@@ -24,9 +25,8 @@ export default function ProductShopDetail({user}) {
         .then(response=>{
             setItems(response.data)
         })
-    },[id]);
+    },[id, refresh]);
 
-    
     
     // display loading when product is not yet loaded
     if (!product) {
@@ -82,7 +82,7 @@ export default function ProductShopDetail({user}) {
                     <div className="d-flex flex-column">
 
                         <p className="text-muted fs-7 mb-0">
-                            {`ArtikleNr: ${product.brand}-${product.category}-${product.gender}-${product.id?.slice(0,8)}`}
+                            {`ArticleNr: ${product.brand}-${product.category}-${product.gender}-${product.id?.slice(0,8)}`}
                         </p>
 
                         <p className="text-muted fs-7">
@@ -141,9 +141,12 @@ export default function ProductShopDetail({user}) {
                                 )}
                                 <p className="m-0 small text-secondary">VAT included.</p>
                             </div>
-                            {/** in shopping cart button */}
-                            <div className="col-8 d-flex justify-content-center">
-                                <InShopCartButton user={user} product={product} stockItem={stockItem} setSelectSize={setSelectSize}/>
+                            {/** editing buttons */}
+                            <div className="col-4 d-flex justify-content-center">
+                                {<EditProdNumButton stockItem={stockItem} setRefresh={setRefresh}/>}
+                            </div>
+                            <div className="col-4 d-flex justify-content-center">
+                                <EditProdButton user={user} product={product} stockItem={stockItem} setSelectSize={setSelectSize}/>
                             </div>
                         </div>
                     </div>
@@ -153,10 +156,59 @@ export default function ProductShopDetail({user}) {
     )
 }
 
-function InShopCartButton({user,product,stockItem,setSelectSize}){
+function EditProdButton({user,product,stockItem,setSelectSize}){
     return(
         <button className="btn btn-danger rounded-0 py-3 px-5">
             Edit Product
         </button>
+    )
+}
+
+function EditProdNumButton({stockItem, setRefresh}){
+    // console.log(stockItem)
+    return(
+        <div>
+            <div className="btn-group">
+
+                <button
+                    type="button"
+                    className="btn btn-secondary btn-sm rounded-0"
+                    onClick={
+                        async () => {
+                            if(stockItem!=undefined){
+                                await webClient.patch(`/api/items/shop/remove/${stockItem.id}`)
+                                setRefresh(prev=>prev+1);
+                            }
+                        }
+                    }
+                >
+                    −
+                </button>
+
+                <button
+                    type="button"
+                    className="btn btn-light"
+                    disabled
+                >
+                    {stockItem!=undefined?stockItem.quantity:"-"}
+                </button>
+
+                <button
+                    type="button"
+                    className="btn btn-secondary btn-sm rounded-0"
+                    onClick={
+                    async () => {
+                        if(stockItem!=undefined){
+                            await webClient.patch(`/api/items/shop/add/${stockItem.id}`)
+                            setRefresh(prev=>prev+1);
+                        }                        
+                    }
+                    }
+                >
+                    +
+                </button>
+
+            </div>
+        </div>
     )
 }
