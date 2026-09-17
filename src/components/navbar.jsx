@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar({user}){
-    // console.log(user);
+
+    const navi = useNavigate();
+    const [search, setSearch] = useState("");
+    // console.log(search);
+
     return(
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
             <div className="container-fluid px-4 flex-nowrap text-nowrap">
@@ -18,13 +24,19 @@ export default function Navbar({user}){
                     <form className="flex-grow-1">
                         <div className="input-group">
                             <input
-                            className="form-control"
-                            type="search"
-                            placeholder="Search"
-                            aria-label="Search"
+                                className="form-control"
+                                type="search"
+                                placeholder="Search"
+                                aria-label="Search"
+                                value={search}
+                                onChange={(e)=> setSearch(e.target.value)}
                             />
 
-                            <button className="btn btn-outline-light" type="submit">
+                            <button 
+                                className="btn btn-outline-light" 
+                                type="submit"
+                                onClick={()=> navi("/search/"+search)}
+                            >
                                 <i className="bi bi-search"></i>
                             </button>
                         </div>
