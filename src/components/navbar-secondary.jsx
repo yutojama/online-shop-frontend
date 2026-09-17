@@ -24,9 +24,9 @@ function NavbarSec(){
                         
                         {/* All equipments */}
                         <li className="nav-item">
-                            <a className="nav-link active" href="#">
+                            <Link className="nav-link active" to="/">
                                 All
-                            </a>
+                            </Link>
                         </li>
 
                         {/* Men's snow equipments */}
@@ -42,10 +42,10 @@ function NavbarSec(){
                             </a>
 
                             <ul className="dropdown-menu rounded-0">
-                                <li><Link  className="dropdown-item" to="/men/top">Top</Link ></li>
-                                <li><Link  className="dropdown-item" to="/men/bottom">Bottom</Link ></li>
-                                <li><Link  className="dropdown-item" to="/men/ski">Ski</Link ></li>
-                                <li><Link  className="dropdown-item" to="/men/snowboard">Snowboard</Link ></li>
+                                <li><Link  className="dropdown-item" to="/M/top">Top</Link ></li>
+                                <li><Link  className="dropdown-item" to="/M/bottom">Bottom</Link ></li>
+                                <li><Link  className="dropdown-item" to="/M/ski">Ski</Link ></li>
+                                <li><Link  className="dropdown-item" to="/M/snowboard">Snowboard</Link ></li>
                             </ul>
                         </li>
 
@@ -62,10 +62,10 @@ function NavbarSec(){
                             </a>
 
                             <ul className="dropdown-menu rounded-0">
-                                <li><a className="dropdown-item" href="#">Top</a></li>
-                                <li><a className="dropdown-item" href="#">Bottom</a></li>
-                                <li><a className="dropdown-item" href="#">Ski</a></li>
-                                <li><a className="dropdown-item" href="#">Snowboard</a></li>
+                                <li><Link className="dropdown-item" to="/W/top">Top</Link></li>
+                                <li><Link className="dropdown-item" to="/W/bottom">Bottom</Link></li>
+                                <li><Link className="dropdown-item" to="/W/ski">Ski</Link></li>
+                                <li><Link className="dropdown-item" to="/W/snowboard">Snowboard</Link></li>
                             </ul>
                         </li>
 
@@ -82,11 +82,11 @@ function NavbarSec(){
                             </a>
 
                             <ul className="dropdown-menu rounded-0">
-                                <li><a className="dropdown-item" href="#">Gloves</a></li>
-                                <li><a className="dropdown-item" href="#">Helmet</a></li>
-                                <li><a className="dropdown-item" href="#">Ski stocks</a></li>
-                                <li><a className="dropdown-item" href="#">Googles</a></li>
-                                <li><a className="dropdown-item" href="#">Mask</a></li>
+                                <li><Link className="dropdown-item" to="gloves">Gloves</Link></li>
+                                <li><Link className="dropdown-item" to="helmet">Helmet</Link></li>
+                                <li><Link className="dropdown-item" to="stocks">Ski stocks</Link></li>
+                                <li><Link className="dropdown-item" to="googles">Googles</Link></li>
+                                <li><Link className="dropdown-item" to="mask">Mask</Link></li>
                             </ul>
                         </li>
 

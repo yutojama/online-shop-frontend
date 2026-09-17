@@ -80,12 +80,7 @@ export default function PlaceOrder({user, setOrder}) {
                                 return (
                                     <label
                                         key={shipping.id}
-                                        className={`
-                                            row
-                                            align-items-center
-                                            g-3
-                                            p-3
-                                            m-0
+                                        className={`row align-items-center g-3 p-3 m-0
                                             ${index !== shippingMethods.length - 1
                                                 ? "border-bottom"
                                                 : ""

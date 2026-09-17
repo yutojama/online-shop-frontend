@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import './App.css'
 import ProductGrid from './components/product-grid'
+import FilteredProductGrid from './components/filtered-product-grid'
 import StoreLayout from './layouts/store-layout'
 import ProductDetail from './components/product-detail'
 import PlaceOrder from './components/place-order'
@@ -33,7 +34,8 @@ export default function App() {
       <Routes>
         {/* Store pages */}
         <Route path='/' element={<StoreLayout user={user} />}>
-          <Route index element={<ProductGrid user={user}/>} />
+          <Route path='/' element={<ProductGrid user={user}/>} />
+          <Route path='/*' element={<FilteredProductGrid user={user}/>} />
           <Route path='/all' element={<ProductGrid/>} />
           <Route path='/products/:id' element={<ProductDetail user={user}/>} />
           <Route path='/cart' element={<Cart user={user}/>} />
