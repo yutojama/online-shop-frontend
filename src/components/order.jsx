@@ -17,17 +17,17 @@ export default function OrderPage({user}) {
 
     useEffect(() => {
         // reactively update order info
-        // const interval = setInterval(async () => {
-        //     const response = await webClient.get("/api/orders/get-order");
-        //     setOrders(response.data);
-        // }, 500);
-
-        // return () => clearInterval(interval);
-
-        const loadData = async ()=>{
+        const interval = setInterval(async () => {
             const response = await webClient.get("/api/orders/get-order");
             setOrders(response.data);
-        }
+        }, 500);
+
+        return () => clearInterval(interval);
+
+        // const loadData = async ()=>{
+        //     const response = await webClient.get("/api/orders/get-order");
+        //     setOrders(response.data);
+        // }
         
         loadData();
 

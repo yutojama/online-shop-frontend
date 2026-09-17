@@ -2,11 +2,11 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 
-export default function Navbar({user}){
+export default function Navbar({user, cartInfo}){
 
     const navi = useNavigate();
     const [search, setSearch] = useState("");
-    // console.log(search);
+    // console.log(cartInfo);
 
     return(
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -97,7 +97,7 @@ export default function Navbar({user}){
                     </li>
 
                     <li className="nav-item">
-                        <CartButton user={user}/>
+                        <CartButton user={user} cartInfo={cartInfo}/>
                     </li>
 
                     </ul>
@@ -146,8 +146,8 @@ function UserMenu({user}){
     )
 }
 
-function CartButton({user}) {
-    // console.log(user);
+function CartButton({user, cartInfo}) {
+    // console.log(cartInfo);
     return(
         user?(
             user.role==="CUSTOMER"?(
@@ -155,11 +155,24 @@ function CartButton({user}) {
                     className="nav-link d-flex align-items-center" 
                     to={user?"/cart":"/"}
                 >
-                <i className="bi bi-cart fs-4 me-2"></i>
-                <span  className="lh-1">
-                    Shopping<br/>
-                    Cart
-                </span>
+                    <span className="position-relative me-2">
+                        <i className="bi bi-cart fs-4"></i>
+
+                        {cartInfo!=null&&cartInfo!=0&&<span 
+                            className="position-absolute text-white fw-bold"
+                            style={{
+                                top: "-2px",
+                                right: "6px"
+                            }}
+                        >
+                            {cartInfo}
+                        </span>}
+                    </span>
+                
+                    <span  className="lh-1">
+                        Shopping<br/>
+                        Cart
+                    </span>
                 </Link>
             ):(
                 <Link 
@@ -181,6 +194,7 @@ function CartButton({user}) {
                 data-bs-target="#loginModal"
             >
                 <i className="bi bi-cart fs-4 me-2"></i>
+
                 <span className="lh-1">
                     Shopping<br />
                     Cart

@@ -3,10 +3,10 @@ import Navbar from "../components/navbar";
 import NavbarSec from "../components/navbar-secondary";
 import Footer from '../components/footer'
 
-export default function StoreLayout({user}) {
+export default function StoreLayout({user, cartInfo}) {
   return (
     <div className="d-flex flex-column min-vh-100">
-      <Navbar user={user}/>
+      <Navbar user={user} cartInfo={cartInfo}/>
       <NavbarSec />
 
       <div className="container mt-4 flex-grow-1">

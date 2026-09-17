@@ -29,12 +29,23 @@ export default function App() {
     return null;
   });
   const [order, setOrder] = useState(null);
+  const [cartInfo, setCartInfo] = useState(0);
+
+  useEffect(()=>{
+    const loadData = async ()=>{
+      const response = await webClient.get("/api/carts/get-cart");
+      // console.log(response.data.cartItemResponseDTOList.length);
+      setCartInfo(response.data.cartItemResponseDTOList.length);
+    }
+
+    user!=null&&loadData();
+  },[])
   
   return(
     <>
       <Routes>
         {/* Store pages */}
-        <Route path='/' element={<StoreLayout user={user} />}>
+        <Route path='/' element={<StoreLayout user={user} cartInfo={cartInfo}/>}>
           <Route path='/' element={<ProductGrid user={user}/>} />
           <Route path='/*' element={<FilteredProductGrid user={user}/>} />
           <Route path='/search/:keyword' element={<SearchProductGrid user={user}/>} />
